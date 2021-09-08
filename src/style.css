@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Chango&family=Londrina+Shadow&display=swap");
+
+.btn {
+	@apply flex flex-1 border-8 border-chocolate-lb self-center py-5
+	hover:bg-chocolate-ho active:bg-chocolate-pu;
+}

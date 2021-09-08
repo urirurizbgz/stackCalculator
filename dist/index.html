@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="jp">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Chango&family=Londrina+Shadow&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="style.css" />
+
+		<title>Dentaku</title>
+	</head>
+	<body class="font-Chango">
+		<div class="container">
+			<!-- main -->
+			<div class="bg-chocolate-b text-chocolate-lb text-7xl">
+				<!-- display -->
+				<div class="btn justify-end">
+					<p id="display" class="text-chocolate-lb text-3xl md:text-6xl"></p>
+				</div>
+				<!-- AC C -->
+				<div class="flex">
+					<div onclick="ac()" id="ac" class="btn justify-center">
+						<p>AC</p>
+					</div>
+					<div onclick="c()" id="c" class="btn justify-center">
+						<p>C</p>
+					</div>
+				</div>
+				<!-- 7 8 9 ÷ -->
+				<div class="flex">
+					<div onclick="pushNum(7)" id="num7" class="btn justify-center">
+						<p>7</p>
+					</div>
+					<div onclick="pushNum(8)" id="num8" class="btn justify-center">
+						<p>8</p>
+					</div>
+					<div onclick="pushNum(9)" id="num9" class="btn justify-center">
+						<p>9</p>
+					</div>
+					<div
+						onclick="pushArithmetic(5)"
+						id="division"
+						class="btn justify-center"
+					>
+						<p>÷</p>
+					</div>
+				</div>
+				<!-- 4 5 6 × -->
+				<div class="flex">
+					<div onclick="pushNum(4)" id="num4" class="btn justify-center">
+						<p>4</p>
+					</div>
+					<div onclick="pushNum(5)" id="num5" class="btn justify-center">
+						<p>5</p>
+					</div>
+					<div onclick="pushNum(6)" id="num6" class="btn justify-center">
+						<p>6</p>
+					</div>
+					<div
+						onclick="pushArithmetic(4)"
+						id="multiplication"
+						class="btn justify-center"
+					>
+						<p>×</p>
+					</div>
+				</div>
+				<!-- 1 2 3 - -->
+				<div class="flex">
+					<div onclick="pushNum(1)" id="num1" class="btn justify-center">
+						<p>1</p>
+					</div>
+
+					<div onclick="pushNum(2)" id="num2" class="btn justify-center">
+						<p>2</p>
+					</div>
+					<div onclick="pushNum(3)" id="num3" class="btn justify-center">
+						<p>3</p>
+					</div>
+					<div
+						onclick="pushArithmetic(3)"
+						id="subtraction"
+						class="btn justify-center"
+					>
+						<p>-</p>
+					</div>
+				</div>
+				<!-- 0 = - -->
+				<div class="flex">
+					<div onclick="pushNum(0)" id="num0" class="btn justify-center">
+						<p>0</p>
+					</div>
+					<div
+						onclick="pushArithmetic(1)"
+						id="equal"
+						class="btn justify-center"
+					>
+						<p>=</p>
+					</div>
+					<div
+						onclick="pushArithmetic(2)"
+						id="addition"
+						class="btn justify-center"
+					>
+						<p>+</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			var inputNum = 0;
+			var oldN = 0;
+
+			var displayElm = document.getElementById("display");
+
+			function pushNum(num) {
+				console.log(num);
+				inputNum = oldN + num;
+				oldN = inputNum * 10;
+				display(inputNum);
+			}
+			function display(num) {
+				displayElm.textContent = num;
+			}
+			display(inputNum); //初期画面の0を表示する
+		</script>
+	</body>
+</html>

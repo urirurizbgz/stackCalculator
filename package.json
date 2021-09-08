@@ -1,0 +1,12 @@
+{
+	"name": "stackDentaku",
+	"version": "1.0.0",
+	"main": "index.js",
+	"license": "MIT",
+	"scripts": {
+		"build": "tailwind build -i src/style.css -o dist/style.css -w"
+	},
+	"devDependencies": {
+		"tailwindcss": "^2.2.12"
+	}
+}
