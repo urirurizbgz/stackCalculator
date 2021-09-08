@@ -114,6 +114,7 @@
 		<script>
 			var inputNum = 0;
 			var oldN = 0;
+			var stack = [];
 
 			var displayElm = document.getElementById("display");
 
@@ -125,6 +126,36 @@
 			}
 			function display(num) {
 				displayElm.textContent = num;
+			}
+			function pushArithmetic(num) {
+				switch (num) {
+					case 2:
+						stack.push(inputNum);
+
+						stack.push("+");
+						break;
+					case 3:
+						stack.push(inputNum);
+						stack.push("-");
+						break;
+					case 4:
+						stack.push(inputNum);
+						stack.push("*");
+						break;
+					case 5:
+						stack.push(inputNum);
+						stack.push("/");
+						break;
+
+					case 1:
+						stack.push(inputNum);
+						stack.push("=");
+						break;
+
+					default:
+						break;
+				}
+				console.log(stack);
 			}
 			display(inputNum); //初期画面の0を表示する
 		</script>
