@@ -33,13 +33,13 @@
 				</div>
 				<!-- 7 8 9 ÷ -->
 				<div class="flex">
-					<div onclick="pushNum(7)" id="num7" class="btn justify-center">
+					<div onclick="pushButton(7)" id="num7" class="btn justify-center">
 						<p>7</p>
 					</div>
-					<div onclick="pushNum(8)" id="num8" class="btn justify-center">
+					<div onclick="pushButton(8)" id="num8" class="btn justify-center">
 						<p>8</p>
 					</div>
-					<div onclick="pushNum(9)" id="num9" class="btn justify-center">
+					<div onclick="pushButton(9)" id="num9" class="btn justify-center">
 						<p>9</p>
 					</div>
 					<div
@@ -52,13 +52,13 @@
 				</div>
 				<!-- 4 5 6 × -->
 				<div class="flex">
-					<div onclick="pushNum(4)" id="num4" class="btn justify-center">
+					<div onclick="pushButton(4)" id="num4" class="btn justify-center">
 						<p>4</p>
 					</div>
-					<div onclick="pushNum(5)" id="num5" class="btn justify-center">
+					<div onclick="pushButton(5)" id="num5" class="btn justify-center">
 						<p>5</p>
 					</div>
-					<div onclick="pushNum(6)" id="num6" class="btn justify-center">
+					<div onclick="pushButton(6)" id="num6" class="btn justify-center">
 						<p>6</p>
 					</div>
 					<div
@@ -71,14 +71,14 @@
 				</div>
 				<!-- 1 2 3 - -->
 				<div class="flex">
-					<div onclick="pushNum(1)" id="num1" class="btn justify-center">
+					<div onclick="pushButton(1)" id="num1" class="btn justify-center">
 						<p>1</p>
 					</div>
 
-					<div onclick="pushNum(2)" id="num2" class="btn justify-center">
+					<div onclick="pushButton(2)" id="num2" class="btn justify-center">
 						<p>2</p>
 					</div>
-					<div onclick="pushNum(3)" id="num3" class="btn justify-center">
+					<div onclick="pushButton(3)" id="num3" class="btn justify-center">
 						<p>3</p>
 					</div>
 					<div
@@ -91,7 +91,7 @@
 				</div>
 				<!-- 0 = - -->
 				<div class="flex">
-					<div onclick="pushNum(0)" id="num0" class="btn justify-center">
+					<div onclick="pushButton(0)" id="num0" class="btn justify-center">
 						<p>0</p>
 					</div>
 					<div
@@ -119,9 +119,9 @@
 			var displayElm = document.getElementById("display");
 
 			function pushNum(num) {
-				console.log(num);
 				inputNum = oldN + num;
 				oldN = inputNum * 10;
+				console.log(inputNum);
 				display(inputNum);
 			}
 			function display(num) {
@@ -129,28 +129,28 @@
 			}
 			function pushArithmetic(num) {
 				switch (num) {
-					case 2:
+					case 11:
 						stack.push(inputNum);
 						stack.push("+");
 						oldN = 0;
 						break;
-					case 3:
+					case 12:
 						stack.push(inputNum);
 						stack.push("-");
 						oldN = 0;
 						break;
-					case 4:
+					case 13:
 						stack.push(inputNum);
 						stack.push("*");
 						oldN = 0;
 						break;
-					case 5:
+					case 14:
 						stack.push(inputNum);
 						stack.push("/");
 						oldN = 0;
 						break;
 
-					case 1:
+					case 15:
 						stack.push(inputNum);
 						stack.push("=");
 						oldN = 0;
@@ -160,6 +160,27 @@
 						break;
 				}
 				console.log(stack);
+			}
+
+			function pushButton(num) {
+				switch (num) {
+					case 1:
+					case 2:
+					case 3:
+					case 4:
+					case 5:
+					case 6:
+					case 7:
+					case 8:
+					case 9:
+					case 0:
+						console.log(num);
+						pushNum(num);
+						break;
+
+					default:
+						break;
+				}
 			}
 			display(inputNum); //初期画面の0を表示する
 		</script>
