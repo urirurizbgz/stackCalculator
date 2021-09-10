@@ -110,11 +110,12 @@
 		<script>
 			var inputNum = 0;
 			var oldN = 0;
-			var stack = [];
+			var sSymbol = [];
+			var sNumber = [];
 
 			var displayElm = document.getElementById("display");
 
-			function pushNumB(num) {
+			function inNumB(num) {
 				inputNum = oldN + num;
 				oldN = inputNum * 10;
 				//console.log(inputNum);
@@ -123,40 +124,42 @@
 			function display(num) {
 				displayElm.textContent = num;
 			}
-			function pushArithmetic(num) {
+			function inSymbol(num) {
 				switch (num) {
 					case 11:
-						stack.push(inputNum);
-						stack.push("+");
+						sNumber.push(inputNum);
+						sSymbol.push("+");
 						oldN = 0;
 						break;
 					case 12:
-						stack.push(inputNum);
-						stack.push("-");
+						sNumber.push(inputNum);
+						sSymbol.push("-");
 						oldN = 0;
 						break;
 
 					case 13:
-						stack.push(inputNum);
-						stack.push("*");
+						sNumber.push(inputNum);
+						sSymbol.push("*");
 						oldN = 0;
 						break;
 					case 14:
-						stack.push(inputNum);
-						stack.push("/");
+						sNumber.push(inputNum);
+						sSymbol.push("/");
 						oldN = 0;
 						break;
-
 					case 15:
-						stack.push(inputNum);
-						stack.push("=");
+						sNumber.push(inputNum);
+						console.log("inSymbol");
 						oldN = 0;
-						break;
-
-					default:
-						break;
 				}
-				console.log(stack);
+				console.log("sSymbol:" + sSymbol);
+				console.log("sNumber:" + sNumber);
+			}
+			function calculation(sNumber, sSymbol) {
+				if (!sSymbol.length) {
+					console.log(" sSymbol はカラでござる");
+				}
+				console.log("function calculation start");
 			}
 
 			function pushButton(num) {
@@ -172,20 +175,17 @@
 					case 9:
 					case 0:
 						//console.log(num);
-						pushNumB(num);
+						inNumB(num);
 						break;
 					case 11:
 					case 12:
 					case 13:
 					case 14:
-						console.log(num);
-						pushArithmetic(num);
+						inSymbol(num);
 						break;
 					case 15:
-						stack.push(inputNum);
-						stack.push("=");
-						oldN = 0;
-						console.log(stack);
+						inSymbol(num);
+						calculation(sNumber, sSymbol);
 						break;
 				}
 			}
