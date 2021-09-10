@@ -43,7 +43,7 @@
 						<p>9</p>
 					</div>
 					<div
-						onclick="pushArithmetic(5)"
+						onclick="pushButton(14)"
 						id="division"
 						class="btn justify-center"
 					>
@@ -62,7 +62,7 @@
 						<p>6</p>
 					</div>
 					<div
-						onclick="pushArithmetic(4)"
+						onclick="pushButton(13)"
 						id="multiplication"
 						class="btn justify-center"
 					>
@@ -82,7 +82,7 @@
 						<p>3</p>
 					</div>
 					<div
-						onclick="pushArithmetic(3)"
+						onclick="pushButton(12)"
 						id="subtraction"
 						class="btn justify-center"
 					>
@@ -94,15 +94,11 @@
 					<div onclick="pushButton(0)" id="num0" class="btn justify-center">
 						<p>0</p>
 					</div>
-					<div
-						onclick="pushArithmetic(1)"
-						id="equal"
-						class="btn justify-center"
-					>
+					<div onclick="pushButton(15)" id="equal" class="btn justify-center">
 						<p>=</p>
 					</div>
 					<div
-						onclick="pushArithmetic(2)"
+						onclick="pushButton(11)"
 						id="addition"
 						class="btn justify-center"
 					>
@@ -118,10 +114,10 @@
 
 			var displayElm = document.getElementById("display");
 
-			function pushNum(num) {
+			function pushNumB(num) {
 				inputNum = oldN + num;
 				oldN = inputNum * 10;
-				console.log(inputNum);
+				//console.log(inputNum);
 				display(inputNum);
 			}
 			function display(num) {
@@ -174,11 +170,21 @@
 					case 8:
 					case 9:
 					case 0:
-						console.log(num);
-						pushNum(num);
+						//console.log(num);
+						pushNumB(num);
 						break;
-
-					default:
+					case 11:
+					case 12:
+					case 13:
+					case 14:
+						console.log(num);
+						pushArithmetic(num);
+						break;
+					case 15:
+						stack.push(inputNum);
+						stack.push("=");
+						oldN = 0;
+						console.log(stack);
 						break;
 				}
 			}
