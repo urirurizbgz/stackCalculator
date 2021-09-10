@@ -112,6 +112,7 @@
 			var oldN = 0;
 			var sSymbol = [];
 			var sNumber = [];
+			var arit, beNum, doNum, answer;
 
 			var displayElm = document.getElementById("display");
 
@@ -149,17 +150,60 @@
 						break;
 					case 15:
 						sNumber.push(inputNum);
-						console.log("inSymbol");
+
 						oldN = 0;
 				}
 				console.log("sSymbol:" + sSymbol);
 				console.log("sNumber:" + sNumber);
 			}
 			function calculation(sNumber, sSymbol) {
-				if (!sSymbol.length) {
-					console.log(" sSymbol はカラでござる");
+				while (sNumber.length) {
+					arit = sSymbol.pop();
+					if (arit == "+") {
+						beNum = sNumber.pop();
+						doNum = sNumber.pop();
+						answer = beNum + doNum;
+						sNumber.push(answer);
+
+						console.log(answer);
+					} else if (arit == "*") {
+						beNum = sNumber.pop();
+						doNum = sNumber.pop();
+						answer = beNum * doNum;
+						sNumber.push(answer);
+
+						console.log(answer);
+					} else if (arit == "-") {
+						beNum = sNumber.pop();
+						doNum = sNumber.pop();
+						answer = beNum - doNum;
+						sNumber.push(answer);
+
+						console.log(answer);
+					} else if (arit == "/") {
+						beNum = sNumber.pop();
+						doNum = sNumber.pop();
+						answer = beNum / doNum;
+						sNumber.push(answer);
+
+						console.log(answer);
+					}
 				}
-				console.log("function calculation start");
+				console.log("sSymbol:" + sSymbol);
+				console.log("sNumber:" + sNumber);
+				/*var a, b;
+				console.log(" inside sSymbol  :" + sSymbol);
+				console.log(" inside sNumber  :" + sNumber);
+				console.log("=======================\n                              ");
+				while (sNumber.length) {
+					a = sSymbol.pop();
+					b = sNumber.pop();
+					console.log("pop S  :" + a);
+					console.log("pop N  :" + b);
+					console.log(" inside sSymbol  :" + sSymbol);
+					console.log(" inside sNumber  :" + sNumber);
+					console.log("-----------------------------------------");
+				}*/
 			}
 
 			function pushButton(num) {
