@@ -111,13 +111,15 @@
 			var oldN = 0;
 			var sSymbol = [];
 			var sNumber = [];
+			var calNum = [];
+			var calSym = [];
 			var inputNum = 0;
 			var arit, doNum, answer;
 			var sStatus = [];
 			const sta1 = 1;
 			const sta2 = 2;
 			const sta3 = 3;
-			console.log("sStatus:" + sStatus);
+			//console.log("sStatus:" + sStatus);
 			var displayElm = document.getElementById("display");
 
 			function display(num) {
@@ -157,18 +159,26 @@
 				console.log("sNumber:" + sNumber);
 			}
 
-			function calculation(sNumber, sSymbol) {
-				// 計算
-				var l = sSymbol.length;
+			function reverse(sNumber, sSymbol) {
+				// 逆転
+				var l;
 				var i = 0;
-				while (l == i) {
+				do {
+					l = sSymbol.length;
 					console.log("revarce");
 					popS = sSymbol.pop();
 					calSym.push(popS);
 					popN = sNumber.pop();
 					calNum.push(popN);
-					i++;
-				}
+				} while (l != i);
+
+				console.log("calSym:" + calSym);
+				console.log("calNum:" + calNum);
+				console.log("------------re-------------");
+			}
+			function calculation(calNum, calSym) {
+				// 計算
+
 				while (calSym.length != 0) {
 					arit = calSym.pop();
 					if (arit == "+") {
@@ -176,14 +186,16 @@
 					} else if (arit == "*") {
 						calNum.push(calNum.pop() * calNum.pop());
 					} else if (arit == "-") {
-						doNum = calNum.pop();
-						calNum.push(calNum.pop() - doNum);
+						// doNum = calNum.pop();
+						// calNum.push(calNum.pop() - doNum);
+						calNum.push(calNum.pop() - calNum.pop());
 					} else if (arit == "/") {
-						doNum = calNum.pop();
+						//doNum = calNum.pop();
 						if (doNum != 0) {
-							calNum.push(calNum.pop() / doNum);
+							//calNum.push(calNum.pop() / doNum);
+							calNum.push(calNum.pop() / calNum.pop());
 						} else {
-							display("error");
+							display("error"); //うまくいかないポイント
 							break;
 						}
 					}
@@ -192,6 +204,7 @@
 					// console.log("sNumber:" + sNumber);
 					console.log("calSym:" + calSym);
 					console.log("calNum:" + calNum);
+					console.log("==================");
 				}
 			}
 
@@ -217,21 +230,23 @@
 					case 14:
 						pushNum();
 						sStatus.push(sta1);
-						console.log("sStatus:" + sStatus);
+						//console.log("sStatus:" + sStatus);
 
 						pushSym(num);
 						sStatus.push(sta2);
-						console.log("sStatus:" + sStatus);
+						//console.log("sStatus:" + sStatus);
 
 						break;
 					case 15:
 						pushNum();
 						sStatus.push(sta1);
-						console.log("sStatus:" + sStatus);
-						calculation(sNumber, sSymbol);
+						//console.log("sStatus:" + sStatus);
+						reverse(sNumber, sSymbol);
+
+						calculation(calNum, calSym);
 						sStatus.push(sta3);
-						console.log("sStatus:" + sStatus);
-						display(sNumber);
+						//console.log("sStatus:" + sStatus);
+						display(calNum);
 						break;
 				}
 			}
