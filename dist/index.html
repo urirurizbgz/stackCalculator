@@ -157,53 +157,19 @@
 				console.log("sNumber:" + sNumber);
 			}
 			function calculation(sNumber, sSymbol) {
-				while (sNumber.length) {
-					arit = sSymbol.pop();
-					if (arit == "+") {
-						beNum = sNumber.pop();
-						doNum = sNumber.pop();
-						answer = beNum + doNum;
-						sNumber.push(answer);
-
-						console.log(answer);
-					} else if (arit == "*") {
-						beNum = sNumber.pop();
-						doNum = sNumber.pop();
-						answer = beNum * doNum;
-						sNumber.push(answer);
-
-						console.log(answer);
-					} else if (arit == "-") {
-						beNum = sNumber.pop();
-						doNum = sNumber.pop();
-						answer = beNum - doNum;
-						sNumber.push(answer);
-
-						console.log(answer);
-					} else if (arit == "/") {
-						beNum = sNumber.pop();
-						doNum = sNumber.pop();
-						answer = beNum / doNum;
-						sNumber.push(answer);
-
-						console.log(answer);
-					}
+				arit = sSymbol.shift(); //諦めて頭から取り出すことにした。
+				if (arit == "+") {
+					sNumber.push(sNumber.pop() + sNumber.pop());
+				} else if (arit == "*") {
+					sNumber.push(sNumber.pop() * sNumber.pop());
+				} else if (arit == "-") {
+					doNum = sNumber.pop();
+					sNumber.push(sNumber.pop() - doNum);
+				} else if (arit == "/") {
+					doNum = sNumber.pop();
+					sNumber.push(sNumber.pop() / doNum);
 				}
-				console.log("sSymbol:" + sSymbol);
 				console.log("sNumber:" + sNumber);
-				/*var a, b;
-				console.log(" inside sSymbol  :" + sSymbol);
-				console.log(" inside sNumber  :" + sNumber);
-				console.log("=======================\n                              ");
-				while (sNumber.length) {
-					a = sSymbol.pop();
-					b = sNumber.pop();
-					console.log("pop S  :" + a);
-					console.log("pop N  :" + b);
-					console.log(" inside sSymbol  :" + sSymbol);
-					console.log(" inside sNumber  :" + sNumber);
-					console.log("-----------------------------------------");
-				}*/
 			}
 
 			function pushButton(num) {
@@ -226,10 +192,15 @@
 					case 13:
 					case 14:
 						inSymbol(num);
+						if (sSymbol.length >= 2) {
+							calculation(sNumber, sSymbol);
+						}
+
 						break;
 					case 15:
 						inSymbol(num);
 						calculation(sNumber, sSymbol);
+						display(sNumber);
 						break;
 				}
 			}
