@@ -108,12 +108,16 @@
 			</div>
 		</div>
 		<script>
-			var inputNum = 0;
 			var oldN = 0;
 			var sSymbol = [];
 			var sNumber = [];
+			var inputNum = 0;
 			var arit, doNum, answer;
-
+			var sStatus = [];
+			const sta1 = 1;
+			const sta2 = 2;
+			const sta3 = 3;
+			console.log("sStatus:" + sStatus);
 			var displayElm = document.getElementById("display");
 
 			function display(num) {
@@ -155,26 +159,40 @@
 
 			function calculation(sNumber, sSymbol) {
 				// 計算
-
-				arit = sSymbol.shift(); //諦めて頭から取り出すことにした。
-				if (arit == "+") {
-					sNumber.push(sNumber.pop() + sNumber.pop());
-				} else if (arit == "*") {
-					sNumber.push(sNumber.pop() * sNumber.pop());
-				} else if (arit == "-") {
-					doNum = sNumber.pop();
-					sNumber.push(sNumber.pop() - doNum);
-				} else if (arit == "/") {
-					doNum = sNumber.pop();
-					if (doNum != 0) {
-						sNumber.push(sNumber.pop() / doNum);
-					} else {
-						sNumber = [];
-						display("error");
-					}
+				var l = sSymbol.length;
+				var i = 0;
+				while (l == i) {
+					console.log("revarce");
+					popS = sSymbol.pop();
+					calSym.push(popS);
+					popN = sNumber.pop();
+					calNum.push(popN);
+					i++;
 				}
+				while (calSym.length != 0) {
+					arit = calSym.pop();
+					if (arit == "+") {
+						calNum.push(calNum.pop() + calNum.pop());
+					} else if (arit == "*") {
+						calNum.push(calNum.pop() * calNum.pop());
+					} else if (arit == "-") {
+						doNum = calNum.pop();
+						calNum.push(calNum.pop() - doNum);
+					} else if (arit == "/") {
+						doNum = calNum.pop();
+						if (doNum != 0) {
+							calNum.push(calNum.pop() / doNum);
+						} else {
+							display("error");
+							break;
+						}
+					}
 
-				console.log("sNumber:" + sNumber);
+					// console.log("sSymbol:" + sSymbol);
+					// console.log("sNumber:" + sNumber);
+					console.log("calSym:" + calSym);
+					console.log("calNum:" + calNum);
+				}
 			}
 
 			function pushButton(num) {
@@ -191,21 +209,28 @@
 					case 9:
 					case 0:
 						inNumB(num);
+
 						break;
 					case 11:
 					case 12:
 					case 13:
 					case 14:
 						pushNum();
+						sStatus.push(sta1);
+						console.log("sStatus:" + sStatus);
+
 						pushSym(num);
-						// if (sSymbol.length >= 2) {
-						// 	calculation(sNumber, sSymbol);
-						// }
+						sStatus.push(sta2);
+						console.log("sStatus:" + sStatus);
 
 						break;
 					case 15:
 						pushNum();
+						sStatus.push(sta1);
+						console.log("sStatus:" + sStatus);
 						calculation(sNumber, sSymbol);
+						sStatus.push(sta3);
+						console.log("sStatus:" + sStatus);
 						display(sNumber);
 						break;
 				}
