@@ -120,6 +120,7 @@
 				//画面表示
 				displayElm.textContent = num;
 			}
+
 			function inNumB(num) {
 				// 数入力
 				inputNum = oldN + num;
@@ -127,35 +128,25 @@
 				//console.log(inputNum);
 				display(inputNum);
 			}
-
-			function pushNumSym(num) {
+			function pushNum() {
+				sNumber.push(inputNum);
+				oldN = 0;
+			}
+			function pushSym(num) {
 				// 記号push・数push
 				switch (num) {
 					case 11:
-						sNumber.push(inputNum);
 						sSymbol.push("+");
-						oldN = 0;
 						break;
 					case 12:
-						sNumber.push(inputNum);
 						sSymbol.push("-");
-						oldN = 0;
 						break;
 
 					case 13:
-						sNumber.push(inputNum);
 						sSymbol.push("*");
-						oldN = 0;
 						break;
 					case 14:
-						sNumber.push(inputNum);
 						sSymbol.push("/");
-						oldN = 0;
-						break;
-					case 15:
-						sNumber.push(inputNum);
-
-						oldN = 0;
 						break;
 				}
 				console.log("sSymbol:" + sSymbol);
@@ -164,6 +155,7 @@
 
 			function calculation(sNumber, sSymbol) {
 				// 計算
+
 				arit = sSymbol.shift(); //諦めて頭から取り出すことにした。
 				if (arit == "+") {
 					sNumber.push(sNumber.pop() + sNumber.pop());
@@ -204,14 +196,15 @@
 					case 12:
 					case 13:
 					case 14:
-						pushNumSym(num);
-						if (sSymbol.length >= 2) {
-							calculation(sNumber, sSymbol);
-						}
+						pushNum();
+						pushSym(num);
+						// if (sSymbol.length >= 2) {
+						// 	calculation(sNumber, sSymbol);
+						// }
 
 						break;
 					case 15:
-						pushNumSym(num);
+						pushNum();
 						calculation(sNumber, sSymbol);
 						display(sNumber);
 						break;
