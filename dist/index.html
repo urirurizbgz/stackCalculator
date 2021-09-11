@@ -116,16 +116,20 @@
 
 			var displayElm = document.getElementById("display");
 
+			function display(num) {
+				//画面表示
+				displayElm.textContent = num;
+			}
 			function inNumB(num) {
+				// 数入力
 				inputNum = oldN + num;
 				oldN = inputNum * 10;
 				//console.log(inputNum);
 				display(inputNum);
 			}
-			function display(num) {
-				displayElm.textContent = num;
-			}
-			function inSymbol(num) {
+
+			function pushNumSym(num) {
+				// 記号push・数push
 				switch (num) {
 					case 11:
 						sNumber.push(inputNum);
@@ -157,7 +161,9 @@
 				console.log("sSymbol:" + sSymbol);
 				console.log("sNumber:" + sNumber);
 			}
+
 			function calculation(sNumber, sSymbol) {
+				// 計算
 				arit = sSymbol.shift(); //諦めて頭から取り出すことにした。
 				if (arit == "+") {
 					sNumber.push(sNumber.pop() + sNumber.pop());
@@ -180,6 +186,7 @@
 			}
 
 			function pushButton(num) {
+				// 入力受付
 				switch (num) {
 					case 1:
 					case 2:
@@ -197,14 +204,14 @@
 					case 12:
 					case 13:
 					case 14:
-						inSymbol(num);
+						pushNumSym(num);
 						if (sSymbol.length >= 2) {
 							calculation(sNumber, sSymbol);
 						}
 
 						break;
 					case 15:
-						inSymbol(num);
+						pushNumSym(num);
 						calculation(sNumber, sSymbol);
 						display(sNumber);
 						break;
