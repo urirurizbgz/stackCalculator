@@ -112,7 +112,7 @@
 			var oldN = 0;
 			var sSymbol = [];
 			var sNumber = [];
-			var arit, beNum, doNum, answer;
+			var arit, doNum, answer;
 
 			var displayElm = document.getElementById("display");
 
@@ -152,6 +152,7 @@
 						sNumber.push(inputNum);
 
 						oldN = 0;
+						break;
 				}
 				console.log("sSymbol:" + sSymbol);
 				console.log("sNumber:" + sNumber);
@@ -167,8 +168,14 @@
 					sNumber.push(sNumber.pop() - doNum);
 				} else if (arit == "/") {
 					doNum = sNumber.pop();
-					sNumber.push(sNumber.pop() / doNum);
+					if (doNum != 0) {
+						sNumber.push(sNumber.pop() / doNum);
+					} else {
+						sNumber = [];
+						display("error");
+					}
 				}
+
 				console.log("sNumber:" + sNumber);
 			}
 
@@ -184,7 +191,6 @@
 					case 8:
 					case 9:
 					case 0:
-						//console.log(num);
 						inNumB(num);
 						break;
 					case 11:
